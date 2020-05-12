@@ -10,4 +10,7 @@ class Ship
     @length
   end
 
+  def sunk?
+    false
+  end
 end
