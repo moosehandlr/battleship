@@ -6,4 +6,8 @@ class Ship
     @length = cell_length
   end
 
+  def health
+    @length
+  end
+
 end
