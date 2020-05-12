@@ -11,7 +11,7 @@ class Ship
   end
 
   def sunk?
-    false
+    @length == 0
   end
 
   def hit
