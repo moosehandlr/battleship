@@ -31,6 +31,29 @@ class ShipTest < Minitest::Test
     assert_equal 3  , cruiser.health
     assert_equal false, cruiser.sunk?
   end
+
+  def test_ship_sinks_when_hit_3_times
+    skip
+    cruiser = Ship.new("Cruiser", 3)
+
+    assert_equal 3  , cruiser.health
+    assert_equal false, cruiser.sunk?
+
+    cruiser.hit
+
+    assert_equal 2  , cruiser.health
+    assert_equal false, cruiser.sunk?
+
+    cruiser.hit
+
+    assert_equal 1  , cruiser.health
+    assert_equal false, cruiser.sunk?
+
+    cruiser.hit
+
+    assert_equal 0  , cruiser.health
+    assert_equal true, cruiser.sunk?
+  end
 end
 
 
