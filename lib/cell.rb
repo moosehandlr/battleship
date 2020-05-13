@@ -30,8 +30,10 @@ class Cell
     @render = "M"
   end
 
-  def render
+  def render(bool = false)
+    if bool == true
+       @render = "S"
+    end
     @render
   end
-
 end
