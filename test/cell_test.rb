@@ -65,10 +65,19 @@ class CellTest < Minitest::Test
     assert_equal 2, cell.ship.health
   end
 
-  def test_for_render
+  def test_it_can_render_dot
     cell_1 = Cell.new("B4")
 
     assert_equal ".", cell_1.render
+  end
+
+  def test_it_can_render_M
+    # skip
+    cell_1 = Cell.new("B4")
+
+    assert_equal ".", cell_1.render
+    cell_1.fire_upon
+    assert_equal "M", cell_1.render
   end
 end
 
