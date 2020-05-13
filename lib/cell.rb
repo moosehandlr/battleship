@@ -38,4 +38,8 @@ class Cell
     @fired_upon = true
   end
 
+  def render
+    "."
+  end
+
 end
