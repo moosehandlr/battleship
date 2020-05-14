@@ -12,4 +12,8 @@ class Board
 
     Hash[zipped]
   end
+
+  def valid_coordinate?(coordinate)
+    self.cells.keys.include?(coordinate)
+  end
 end
