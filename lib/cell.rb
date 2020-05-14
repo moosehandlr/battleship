@@ -27,6 +27,7 @@ class Cell
       self.ship.hit
     end
     @fired_upon = true
+    return @render = "H" if @render == "S"
     @render = "M"
   end
 
