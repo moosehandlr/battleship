@@ -203,26 +203,3 @@ class CellTest < Minitest::Test
     assert_equal "X", cell_2.render
   end
 end
-
-
-# # Indicate that we want to show a ship with the optional argument
-# pry(main)> cell_2.render(true)
-# # => "S"
-#
-# pry(main)> cell_2.fire_upon
-#
-# pry(main)> cell_2.render
-# # => "H"
-#
-# pry(main)> cruiser.sunk?
-# # => false
-#
-# pry(main)> cruiser.hit
-#
-# pry(main)> cruiser.hit
-#
-# pry(main)> cruiser.sunk?
-# # => true
-#
-# pry(main)> cell_2.render
-# # => "X"
