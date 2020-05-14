@@ -3,10 +3,18 @@ require "minitest/pride"
 require './lib/board'
 
 class BoardTest < Minitest::Test
-  def test_it_exists
+  def test_board_exists
     board = Board.new
 
     assert_instance_of Board, board
+  end
+
+  def test_board_has_cells
+    board = Board.new
+
+    assert_instance_of Cell, board.cells["A1"]
+    assert_equal 16, board.cells.count
+    assert_equal "A1", board.cells["A1"].coordinate
   end
 
 end
