@@ -9,11 +9,11 @@ class Cell
   end
 
   def empty?
-    ship == nil
+    self.ship.nil?
   end
 
   def place_ship(ship_type)
-    if self.ship == nil
+    if self.ship.nil?
       @ship = ship_type
     end
   end
@@ -23,7 +23,7 @@ class Cell
   end
 
   def fire_upon
-    if self.ship != nil
+    if !self.ship.nil?
       self.ship.hit
     end
     @fired_upon = true
@@ -32,10 +32,10 @@ class Cell
   end
 
   def render(bool = false)
-    if bool == true
+    if bool
        @render = "S"
     end
-    if self.ship != nil && self.ship.sunk? == true
+    if !self.empty? && self.ship.sunk?
       @render = "X"
     end
     @render
