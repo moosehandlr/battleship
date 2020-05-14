@@ -35,6 +35,9 @@ class Cell
     if bool == true
        @render = "S"
     end
+    if self.ship != nil && self.ship.sunk? == true
+      @render = "X"
+    end
     @render
   end
 end
