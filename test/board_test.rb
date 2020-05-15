@@ -17,10 +17,16 @@ class BoardTest < Minitest::Test
     assert_equal "A1", board.cells["A1"].coordinate
   end
 
-  def test_it_has_x_coordinates
+  def test_board_has_x_coordinates
     board = Board.new
     expecting = ["A","A","A","A","B","B","B","B","C","C","C","C","D","D","D","D"]
     assert_equal expecting,  board.x_coordinates
+  end
+
+  def test_board_has_y_coordinates
+    board = Board.new
+    expecting = [1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4]
+    assert_equal expecting,  board.y_coordinates
   end
 
   def test_board_has_valid_coodinates
