@@ -35,6 +35,13 @@ class BoardTest < Minitest::Test
     assert_equal expecting,  board.coordinates
   end
 
+  def test_board_generate_cells
+    board = Board.new
+
+    assert_equal 16, board.generate_cells.count
+    assert_instance_of Cell, board.generate_cells[0]
+  end
+
   def test_board_has_valid_coodinates
     board = Board.new
 
