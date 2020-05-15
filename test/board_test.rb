@@ -1,6 +1,7 @@
 require "minitest/autorun"
 require "minitest/pride"
 require './lib/board'
+require "./lib/ship"
 
 class BoardTest < Minitest::Test
   def test_board_exists
@@ -52,4 +53,28 @@ class BoardTest < Minitest::Test
     assert_equal false , board.valid_coordinate?("A22")
   end
 
+  def test_board_has_valid_ship_placement
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    assert_equal false, board.valid_placement?(cruiser, ["A1", "A2"])
+    assert_equal false, board.valid_placement?(submarine, ["A2", "A3", "A4"])
+  end
+
 end
+
+
+# pry(main)> board = Board.new
+# # => #<Board:0x00007fcb0d9db478...>
+#
+# pry(main)> cruiser = Ship.new("Cruiser", 3)
+# # => #<Ship:0x00007fcb0d989510...>
+#
+# pry(main)> submarine = Ship.new("Submarine", 2)
+# # => #<Ship:0x00007fcb0e8402c0...>
+# pry(main)> board.valid_placement?(cruiser, ["A1", "A2"])
+# # => false
+#
+# pry(main)> board.valid_placement?(submarine, ["A2", "A3", "A4"])
+# # => false
