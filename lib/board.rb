@@ -6,9 +6,9 @@ class Board
     # number_arr = (1..4).to_a*4
     # mix = self.x_coordinates.zip(self.y_coordinates)
     # board_coordinates = mix.map{|arr| arr.join}
-    cell_values = self.coordinates.map{|coord| Cell.new(coord)}
+    # cell_values = self.coordinates.map{|coord| Cell.new(coord)}
     # zipp values
-    zipped = self.coordinates.zip(cell_values)
+    zipped = self.coordinates.zip(self.generate_cells)
 
     Hash[zipped]
   end
@@ -23,6 +23,10 @@ class Board
 
   def coordinates
     self.x_coordinates.zip(self.y_coordinates).map{|coord| coord.join}
+  end
+
+  def generate_cells
+    self.coordinates.map{|coord| Cell.new(coord)}
   end
 
   def valid_coordinate?(coordinate)
