@@ -42,6 +42,10 @@ class Board
     sorted_coords.each_cons(ship_length).map{|p| p}
   end
 
+  def coordinates_with_ship
+    self.cells.values.select{|cell| !cell.ship.nil? }.map{|coord| coord.coordinate}
+  end
+
   def place(ship, cells)
   cells.each do |cell|
     @cells[cell].place_ship(ship)
