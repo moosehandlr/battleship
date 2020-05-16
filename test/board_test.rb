@@ -62,19 +62,39 @@ class BoardTest < Minitest::Test
     assert_equal false, board.valid_placement?(submarine, ["A2", "A3", "A4"])
   end
 
+  def test_ship_cells_are_consecutive
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    assert_equal false, board.valid_placement?(submarine, ["A1", "C1"])
+    assert_equal false, board.valid_placement?(submarine, ["A2", "A3", "A4"])
+    assert_equal false, board.valid_placement?(submarine, ["C1", "B1"])
+    assert_equal true,  board.valid_placement?(submarine, ["A2", "A3"])
+    # assert_equal false, board.valid_placement?(cruiser, ["A4", "B1", "B2"])
+  end
+
+  def test_ship_cells_are_not_diagnal
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    assert_equal false, board.valid_placement?(cruiser, ["A1", "B2", "C3"])
+    assert_equal false, board.valid_placement?(submarine, ["C2", "D3"])
+  end
+
+  def test_ship_placement_is_valid
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    assert_equal true, board.valid_placement?(submarine, ["A1", "A2"])
+    assert_equal true, board.valid_placement?(cruiser, ["B1", "C1", "D1"])
+  end
 end
-
-
-# pry(main)> board = Board.new
-# # => #<Board:0x00007fcb0d9db478...>
 #
-# pry(main)> cruiser = Ship.new("Cruiser", 3)
-# # => #<Ship:0x00007fcb0d989510...>
-#
-# pry(main)> submarine = Ship.new("Submarine", 2)
-# # => #<Ship:0x00007fcb0e8402c0...>
-# pry(main)> board.valid_placement?(cruiser, ["A1", "A2"])
+# pry(main)> board.valid_placement?(cruiser, ["A1", "B2", "C3"])
 # # => false
 #
-# pry(main)> board.valid_placement?(submarine, ["A2", "A3", "A4"])
+# pry(main)> board.valid_placement?(submarine, ["C2", "D3"])
 # # => false
