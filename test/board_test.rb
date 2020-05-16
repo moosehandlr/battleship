@@ -93,27 +93,39 @@ class BoardTest < Minitest::Test
   end
 
   def test_ship_placement_in_its_cells
-  board = Board.new
-  cruiser = Ship.new("Cruiser", 3)
-  submarine = Ship.new("Submarine", 2)
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
 
-  board.place(cruiser, ["A1", "A2", "A3"])
-  board.place(submarine, ["B2", "B3"])
+    board.place(cruiser, ["A1", "A2", "A3"])
+    board.place(submarine, ["B2", "B3"])
 
-  cell_1 = board.cells["A1"]
-  cell_2 = board.cells["A2"]
-  cell_3 = board.cells["A3"]
+    cell_1 = board.cells["A1"]
+    cell_2 = board.cells["A2"]
+    cell_3 = board.cells["A3"]
 
-  cell_4 = board.cells["B2"]
-  cell_5 = board.cells["B3"]
+    cell_4 = board.cells["B2"]
+    cell_5 = board.cells["B3"]
 
-  assert_equal cruiser, cell_1.ship
-  assert_equal cruiser, cell_2.ship
-  assert_equal cruiser, cell_3.ship
-  assert_equal submarine, cell_4.ship
-  assert_equal submarine, cell_5.ship
+    assert_equal cruiser, cell_1.ship
+    assert_equal cruiser, cell_2.ship
+    assert_equal cruiser, cell_3.ship
+    assert_equal submarine, cell_4.ship
+    assert_equal submarine, cell_5.ship
 
-  assert_equal true , cell_2.ship == cell_3.ship
-  assert_equal false, cell_2.ship == cell_4.ship
-end
+    assert_equal true , cell_2.ship == cell_3.ship
+    assert_equal false, cell_2.ship == cell_4.ship
+  end
+
+  def test_ship_placement_is_overlapping
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    board.place(cruiser, ["A1", "A2", "A3"])
+
+    submarine = Ship.new("Submarine", 2)
+    submarine_2 = Ship.new("Submarine", 2)
+
+    assert_equal false, board.valid_placement?(submarine, ["A1", "B1"])
+    assert_equal true, board.valid_placement?(submarine, ["B1", "B2"])
+  end
 end
