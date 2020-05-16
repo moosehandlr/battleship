@@ -34,6 +34,13 @@ class Board
     self.coordinates.each_cons(ship.length).map{|coord| coord}.include?(board_cells)
   end
 
+  def consecutive_vertical_valid_placement(ship_length)
+    sorted_coords = self.coordinates.sort do |coord_small, coord_large|
+      coord_small.split("")[1].to_i <=> coord_large.split("")[1].to_i
+    end
+    sorted_coords.each_cons(ship_length).map{|p| p}
+  end
+
   def place(ship, cells)
   cells.each do |cell|
     @cells[cell].place_ship(ship)
