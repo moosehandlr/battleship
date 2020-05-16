@@ -31,6 +31,9 @@ class Board
 
   def valid_placement?(ship, board_cells)
     board_cells.size == ship.length
+    if !board_cells.find{|el| self.coordinates_with_ship.include?(el)}.nil?
+      return false
+    end
     self.coordinates.each_cons(ship.length).map{|coord| coord}.include?(board_cells)||
     self.consecutive_vertical_valid_placement(ship.length).any?(board_cells)
   end
