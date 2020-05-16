@@ -1,7 +1,11 @@
 require "./lib/cell"
 
 class Board
-  def cells
+  attr_reader  :cells
+  def initialize
+    @cells = self.coord_with_cells
+  end
+  def coord_with_cells
     Hash[self.coordinates.zip(self.generate_cells)]
   end
 
@@ -22,11 +26,17 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
-    self.cells.keys.include?(coordinate)
+    self.coord_with_cells.keys.include?(coordinate)
   end
 
   def valid_placement?(ship, board_cells)
     board_cells.size == ship.length
     self.coordinates.each_cons(ship.length).map{|coord| coord}.include?(board_cells)
   end
+
+  def place(ship, cells)
+  cells.each do |cell|
+    @cells[cell].place_ship(ship)
+  end
+end
 end
