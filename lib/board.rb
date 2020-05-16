@@ -27,5 +27,6 @@ class Board
 
   def valid_placement?(ship, board_cells)
     board_cells.size == ship.length
+    self.coordinates.each_cons(ship.length).map{|coord| coord}.include?(board_cells)
   end
 end
