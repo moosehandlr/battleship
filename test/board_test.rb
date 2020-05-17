@@ -128,4 +128,14 @@ class BoardTest < Minitest::Test
     assert_equal false, board.valid_placement?(submarine, ["A1", "B1"])
     assert_equal true, board.valid_placement?(submarine, ["B1", "B2"])
   end
+
+  def test_board_render_cells
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    board.place(cruiser, ["A1", "A2", "A3"])
+    board.place(submarine, ["C1", "D1"])
+
+    assert_equal "banana", board.render
+  end
 end
