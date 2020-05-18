@@ -38,7 +38,6 @@ class Board
     self.consecutive_vertical_valid_placement(ship.length).any?(board_cells)
   end
 
-
   def consecutive_vertical_valid_placement(ship_length)
     sorted_coords = (("A".."D").to_a*4).zip(self.coordinates.map{|coord| coord[1]}.sort)
     sorted_coords = sorted_coords.map{|c| c.join}
