@@ -39,18 +39,21 @@ class Board
   end
 
   def consecutive_horizontal_valid_placement(ship_length)
-    self.coordinates.each_cons(ship_length).map{|coord| coord}.select do |coords|
+    sorted_coords = self.coordinates.each_cons(ship_length).map{|coord| coord}.select do |coords|
       coords[0][0] == (coords[-1][0])
     end
+    reverse_coords = sorted_coords.map{|coord| coord.reverse}
+    sorted_coords.concat(reverse_coords)
   end
 
   def consecutive_vertical_valid_placement(ship_length)
     sorted_coords = (("A".."D").to_a*4).zip(self.coordinates.map{|coord| coord[1]}.sort)
     sorted_coords = sorted_coords.map{|c| c.join}
-
-    sorted_coords.each_cons(ship_length).select do |coords|
+    sorted_coords = sorted_coords.each_cons(ship_length).select do |coords|
       coords[0][1] == (coords[-1][1])
     end
+    reverse = sorted_coords.map{|coord| coord.reverse}
+    sorted_coords.concat(reverse)
   end
 
   def coordinates_with_ship
