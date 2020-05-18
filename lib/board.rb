@@ -34,15 +34,23 @@ class Board
     if !board_cells.find{|el| self.coordinates_with_ship.include?(el)}.nil?
       return false
     end
-    self.coordinates.each_cons(ship.length).map{|coord| coord}.include?(board_cells)||
-    self.consecutive_vertical_valid_placement(ship.length).any?(board_cells)
+    self.consecutive_horizontal_valid_placement(ship.length).include?(board_cells)||
+    self.consecutive_vertical_valid_placement(ship.length).include?(board_cells)
+  end
+
+  def consecutive_horizontal_valid_placement(ship_length)
+    self.coordinates.each_cons(ship_length).map{|coord| coord}.select do |coords|
+      coords[0][0] == (coords[-1][0])
+    end
   end
 
   def consecutive_vertical_valid_placement(ship_length)
-    sorted_coords = self.coordinates.sort do |coord_small, coord_large|
-      coord_small.split("")[1].to_i <=> coord_large.split("")[1].to_i
+    sorted_coords = (("A".."D").to_a*4).zip(self.coordinates.map{|coord| coord[1]}.sort)
+    sorted_coords = sorted_coords.map{|c| c.join}
+
+    sorted_coords.each_cons(ship_length).select do |coords|
+      coords[0][1] == (coords[-1][1])
     end
-    sorted_coords.each_cons(ship_length).map{|p| p}
   end
 
   def coordinates_with_ship

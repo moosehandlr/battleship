@@ -71,7 +71,7 @@ class BoardTest < Minitest::Test
     assert_equal false, board.valid_placement?(submarine, ["A2", "A3", "A4"])
     assert_equal false, board.valid_placement?(submarine, ["C1", "B1"])
     assert_equal true,  board.valid_placement?(submarine, ["A2", "A3"])
-    # assert_equal false, board.valid_placement?(cruiser, ["A4", "B1", "B2"])
+    assert_equal false, board.valid_placement?(cruiser, ["A4", "B1", "B2"])
   end
 
   def test_ship_cells_are_not_diagnal
