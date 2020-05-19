@@ -136,6 +136,6 @@ class BoardTest < Minitest::Test
     board.place(cruiser, ["A1", "A2", "A3"])
     board.place(submarine, ["C1", "D1"])
 
-    assert_equal "banana", board.render
+    assert_equal "  1 2 3 4 \n"+"A . . . . \n"+"B . . . . \n"+"C . . . . \n"+"D . . . . \n", board.render
   end
 end
