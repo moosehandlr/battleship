@@ -14,6 +14,9 @@ class Game
     c_cruiser = Ship.new("Cruiser", 3)
     c_submarine = Ship.new("submarine", 2)
     p_submarine = Ship.new("submarine", 2)
-    
+
+    # Tempt user to enter coordinates
+    puts "Use this board as a map to enter ship coordinares"
+    puts player_board.render
   end
 end
