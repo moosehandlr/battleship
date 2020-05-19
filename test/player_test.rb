@@ -20,6 +20,13 @@ class PlayerTest < Minitest::Test
     computer = Player.new(board)
     actual =  computer.board.all_possible_coordinates_to_be_placed(cruiser.length).include?(computer.gen_ship(cruiser))
     assert_equal true, actual
-  endĀ
+  end
+
+  def test_computer_can_generate_shots
+    board = Board.new
+    computer = Player.new(board)
+
+    assert_equal true, computer.board.coordinates.include?(computer.gen_shot(board))
+  end
 
 end
