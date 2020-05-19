@@ -33,5 +33,20 @@ class Game
     player_board.place(p_cruiser, cruiser_coords)
     # computer generates the ships and place them
     computer.gen_ship(c_cruiser)
+
+    # reapeat for a submarine
+    print "Enter 2 values for a submarine > "
+    user_input = gets.chomp.upcase
+    submarine_coords = user_input.split
+
+    while !player_board.valid_placement?(p_submarine, submarine_coords)
+      print "Please enter valid submarine coordinates > "
+      user_input = gets.chomp.upcase
+      submarine_coords = user_input.split
+    end
+    player_board.place(p_submarine, submarine_coords)
+
+    # computer generates submarine coordinates and places them in the board.
+    computer.gen_ship(c_submarine)
   end
 end
