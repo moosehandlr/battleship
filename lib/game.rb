@@ -31,5 +31,7 @@ class Game
     end
     # place the cruiser ship
     player_board.place(p_cruiser, cruiser_coords)
+    # computer generates the ships and place them
+    computer.gen_ship(c_cruiser)
   end
 end
