@@ -23,6 +23,13 @@ class Game
     user_input = gets.chomp.upcase
     cruiser_coords = user_input.split
 
-
+    # infinit loop to prompt user to enter a valid combination
+    while !player_board.valid_placement?(p_cruiser, cruiser_coords)
+      print "Please enter valid cruise coordinates > "
+      user_input = gets.chomp.upcase
+      cruiser_coords = user_input.split
+    end
+    # place the cruiser ship
+    player_board.place(p_cruiser, cruiser_coords)
   end
 end
