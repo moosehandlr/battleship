@@ -18,5 +18,11 @@ class Game
     # Tempt user to enter coordinates
     puts "Use this board as a map to enter ship coordinares"
     puts player_board.render
+
+    print "Enter 3 coordinates for a cruiser > "
+    user_input = gets.chomp.upcase
+    cruiser_coords = user_input.split
+
+
   end
 end
