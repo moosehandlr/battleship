@@ -1,16 +1,7 @@
 class Player
-  attr_reader :player_type,
-              :board,
-              :ships
-
-  def initialize (player_type, board, ships)
-    @player_type = player_type
+  attr_reader :board
+  def initialize(board)
     @board = board
-    @ships = ships
-
-  end
-
-  def add_ship(new_ship)
-    @ships << ship
+    @coords = board.cells.keys
   end
 end
