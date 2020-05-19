@@ -48,5 +48,9 @@ class Game
 
     # computer generates submarine coordinates and places them in the board.
     computer.gen_ship(c_submarine)
+    puts "Welcome to BATTLESHIP"
   end
 end
+
+game = Game.new
+game.start
