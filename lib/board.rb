@@ -56,6 +56,10 @@ class Board
     sorted_coords.concat(reverse)
   end
 
+  def all_possible_coordinates_to_be_placed(ship_length)
+    consecutive_horizontal_valid_placement(ship_length).concat(consecutive_vertical_valid_placement(ship_length))
+  end
+
   def coordinates_with_ship
     self.cells.values.select{|cell| !cell.ship.nil? }.map{|coord| coord.coordinate}
   end
