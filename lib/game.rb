@@ -68,9 +68,12 @@ class Game
 
       # computer taking a shot
       computer.gen_shot(player_board)
-      end
+    end
+
+    if c_cruiser.sunk? && c_submarine.sunk?
+      puts "Player Won"
+    else
+      puts "Computer Won"
+    end
   end
 end
-
-game = Game.new
-game.start
