@@ -9,16 +9,16 @@ class Board
     Hash[self.coordinates.zip(self.generate_cells)]
   end
 
-  def x_coordinates
+  def y_coordinates
     ("A".."D").to_a.map{|letter| letter*4}.join.split("")
   end
 
-  def y_coordinates
+  def x_coordinates
     (1..4).to_a*4
   end
 
   def coordinates
-    self.x_coordinates.zip(self.y_coordinates).map{|coord| coord.join}
+    self.y_coordinates.zip(self.x_coordinates).map{|coord| coord.join}
   end
 
   def generate_cells

@@ -48,12 +48,14 @@ class Game
 
     # computer generates submarine coordinates and places them in the board.
     computer.gen_ship(c_submarine)
-    puts "Welcome to BATTLESHIP"
+    puts "\n"
+    puts "Let the battle begin!"
 
     until c_cruiser.sunk? && c_submarine.sunk? || p_cruiser.sunk? && p_submarine.sunk?
-      puts "____Computer Board____"
+      puts "\n"
+      puts "____Terminator Board____"
       puts computer_board.render
-      puts "____Player Board____"
+      puts "____John Connor Board____"
       puts player_board.render(true)
 
       print "Enter your shot coordinate > "
@@ -61,19 +63,21 @@ class Game
 
       while !computer_board.coordinates.include?(shot_input)
         puts "You have entered a wrong coordinate"
-        print  "Enter your shot coordinate >"
+        print  "Enter your shot coordinate > "
         shot_input = gets.chomp.upcase
       end
       computer_board.cells[shot_input].fire_upon
-
+      puts "\n"
+      puts "Terminators taking a shot!"
+      sleep(2)
       # computer taking a shot
       computer.gen_shot(player_board)
     end
 
     if c_cruiser.sunk? && c_submarine.sunk?
-      puts "Player Won"
+      puts "John Connor has terminated the Terminators"
     else
-      puts "Computer Won"
+      puts "Terminators now rule the world"
     end
   end
 end

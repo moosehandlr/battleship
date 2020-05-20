@@ -18,16 +18,16 @@ class BoardTest < Minitest::Test
     assert_equal "A1", board.cells["A1"].coordinate
   end
 
-  def test_board_has_x_coordinates
-    board = Board.new
-    expecting = ["A","A","A","A","B","B","B","B","C","C","C","C","D","D","D","D"]
-    assert_equal expecting,  board.x_coordinates
-  end
-
   def test_board_has_y_coordinates
     board = Board.new
-    expecting = [1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4]
+    expecting = ["A","A","A","A","B","B","B","B","C","C","C","C","D","D","D","D"]
     assert_equal expecting,  board.y_coordinates
+  end
+
+  def test_board_has_x_coordinates
+    board = Board.new
+    expecting = [1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4]
+    assert_equal expecting,  board.x_coordinates
   end
 
   def test_board_has_coordinates
@@ -138,4 +138,19 @@ class BoardTest < Minitest::Test
 
     assert_equal "  1 2 3 4 \n"+"A . . . . \n"+"B . . . . \n"+"C . . . . \n"+"D . . . . \n", board.render
   end
+
+  def test_ship_redners_X_when_sunk
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    board.place(cruiser, ["A1", "A2", "A3"])
+    board.place(submarine, ["C1", "D1"])
+
+    board.cells["C1"].fire_upon
+    board.cells["D1"].fire_upon
+
+    assert_equal "  1 2 3 4 \n"+"A . . . . \n"+"B . . . . \n"+"C X . . . \n"+"D X . . . \n", board.render
+  end
+
+
 end
