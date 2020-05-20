@@ -1,18 +1,14 @@
 
 class Ship
-  attr_reader :name, :length
+  attr_reader :name, :length, :health
   def initialize(name, cell_length)
     @name = name
     @length = cell_length
-    @health = @length
-  end
-
-  def health
-    @health
+    @health = cell_length
   end
 
   def sunk?
-    @health.zero?
+    @health <= 0
   end
 
   def hit
