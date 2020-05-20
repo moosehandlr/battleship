@@ -49,6 +49,26 @@ class Game
     # computer generates submarine coordinates and places them in the board.
     computer.gen_ship(c_submarine)
     puts "Welcome to BATTLESHIP"
+
+    until c_cruiser.sunk? && c_submarine.sunk? || p_cruiser.sunk? && p_submarine.sunk?
+      puts "____Computer Board____"
+      puts computer_board.render
+      puts "____Player Board____"
+      puts player_board.render(true)
+
+      print "Enter your shot coordinate > "
+      shot_input = gets.chomp.upcase
+
+      while !computer_board.coordinates.include?(shot_input)
+        puts "You have entered a wrong coordinate"
+        print  "Enter your shot coordinate >"
+        shot_input = gets.chomp.upcase
+      end
+      computer_board.cells[shot_input].fire_upon
+
+      # computer taking a shot
+      computer.gen_shot(player_board)
+      end
   end
 end
 
